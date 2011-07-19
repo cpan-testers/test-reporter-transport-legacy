@@ -1,39 +1,22 @@
-use 5.008001;
 use strict;
-use warnings;
-
+BEGIN{ if (not $] < 5.006) { require warnings; warnings->import } }
 package Test::Reporter::Transport::Legacy;
 # VERSION
 
-# Dependencies
-use autodie 2.00;
-
 1;
 
-# ABSTRACT: No abstract given for Test::Reporter::Transport::Legacy
+# ABSTRACT: Legacy Test::Reporter::Transport modules
 
-=for Pod::Coverage method_names_here
+=head1 DESCRIPTION
 
-=begin wikidoc
+This distribution contains legacy L<Test::Reporter> transport modules from
+when the CPAN Testers project still accepted test report from email.  As
+email submission has been discontinued, these module have been split out
+from the main Test::Reporter distribution.
 
-= SYNOPSIS
-
-  use Test::Reporter::Transport::Legacy;
-
-= DESCRIPTION
-
-This module might be cool, but you'd never know it from the lack
-of documentation.
-
-= USAGE
-
-Good luck!
-
-= SEE ALSO
-
-Maybe other modules do related things.
-
-=end wikidoc
+They are available for historical record and are not needed for CPAN Testers.
+They are provided on CPAN in case someone has built a custom testing solution
+using Test::Reporter and these modules and still needs them.
 
 =cut
 

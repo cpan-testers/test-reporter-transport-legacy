@@ -1,5 +1,6 @@
 Revision history for Test-Reporter-Transport-Legacy
 
 {{$NEXT}}
-    -
+
+  - Transport modules split out from Test-Reporter-1.57
 
