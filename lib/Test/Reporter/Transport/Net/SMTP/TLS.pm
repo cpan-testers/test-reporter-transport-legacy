@@ -3,7 +3,8 @@ BEGIN{ if (not $] < 5.006) { require warnings; warnings->import } }
 package Test::Reporter::Transport::Net::SMTP::TLS;
 # VERSION
 
-use base 'Test::Reporter::Transport::Net::SMTP';
+use Test::Reporter::Transport::Net::SMTP;
+our @ISA = qw/Test::Reporter::Transport::Net::SMTP/;
 
 use Net::SMTP::TLS;
 

@@ -1,9 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use Test::More;
-
-$Test::Reporter::VERSION ||= 999; # dzil will set it for us on release
+use Test::More 0.88;
+use Test::Reporter 1.58;
 
 # hack-mock Net::SMTP::TLS
 BEGIN {
@@ -33,10 +32,6 @@ BEGIN {
 my $from = 'johndoe@example.net';
 
 #--------------------------------------------------------------------------#
-
-plan tests => 4;
-
-require_ok( 'Test::Reporter' );
 
 #--------------------------------------------------------------------------#
 # simple test
@@ -86,3 +81,6 @@ my $form = {
 #is_deeply( [ $reporter->transport_args ], $transport_args,
 #  "transport_args set correctly by new()"
 #);
+
+done_testing;
+

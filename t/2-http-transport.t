@@ -1,9 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use Test::More;
-
-$Test::Reporter::VERSION ||= 999; # dzil will set it for us on release
+use Test::More 0.88;
+use Test::Reporter 1.58;
 
 # hack-mock LWP::UserAgent
 BEGIN {
@@ -44,9 +43,6 @@ my $from = 'johndoe@example.net';
 
 #--------------------------------------------------------------------------#
 
-plan tests => 8;
-
-require_ok( 'Test::Reporter' );
 
 #--------------------------------------------------------------------------#
 # simple test
@@ -102,3 +98,5 @@ isa_ok($reporter, 'Test::Reporter');
 is_deeply( [ $reporter->transport_args ], $transport_args,
   "transport_args set correctly by new()"
 );
+
+done_testing;

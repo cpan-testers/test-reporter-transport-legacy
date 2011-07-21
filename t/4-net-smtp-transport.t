@@ -1,9 +1,8 @@
 #!/usr/bin/perl -w
 
 use strict;
-use Test::More;
-
-$Test::Reporter::VERSION ||= 999; # dzil will set it for us on release
+use Test::More 0.88;
+use Test::Reporter 1.58;
 
 # hack-mock Net::SMTP
 BEGIN {
@@ -30,15 +29,11 @@ my $from = 'johndoe@example.net';
 
 #--------------------------------------------------------------------------#
 
-plan tests => 5;
-
-require_ok( 'Test::Reporter' );
-
 #--------------------------------------------------------------------------#
 # simple test
 #--------------------------------------------------------------------------#
 
-my $reporter = Test::Reporter->new();
+my $reporter = Test::Reporter->new( transport => 'Net::SMTP' );
 isa_ok($reporter, 'Test::Reporter');
 
 $reporter->grade('pass');
@@ -59,7 +54,7 @@ my $form = {
     ok( $rc, "send() is true when successful" ) or diag $reporter->errstr;
     ok( ( grep { /X-Test-Reporter-Perl: v5\.\d+\.\d+/ } @{$Net::SMTP::Data{datasend}}),
       "saw X-Test-Reporter-Perl header"
-    );
+    ) or diag "OUTPUT:\n" . join("\n", @{$Net::SMTP::Data{datasend}});
 
 }
 
@@ -85,3 +80,5 @@ my $form = {
 #is_deeply( [ $reporter->transport_args ], $transport_args,
 #  "transport_args set correctly by new()"
 #);
+
+done_testing;
